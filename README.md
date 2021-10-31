@@ -1,2 +1,2 @@
 # anime-dl
-Rewrite of anime-dl/anime-downloader from scratch.
+Rewrite of https://github.com/anime-dl/anime-downloader from scratch.
