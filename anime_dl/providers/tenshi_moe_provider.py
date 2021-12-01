@@ -1,5 +1,6 @@
 from anime_dl.providers.ProviderAPI import DubStatus, Episode, Provider, SearchResult, LoadResponse, TvStatus, ExtractorLink
 from anime_dl.utils import session as ses
+from nullsafe import undefined, _
 from bs4 import BeautifulSoup
 import typing
 import json
@@ -50,13 +51,9 @@ class TenshiMoeProvider(Provider):
     def load(self, url: str) -> LoadResponse:
         soup = BeautifulSoup(self.session.get(url, cookies=self.__cookies).text, "html.parser")  # noqa
         title = soup.select_one("header.entry-header > h1.mb-3").text.strip()
-        poster = soup.select_one("img.cover-image")
-        if poster:
-            poster = poster["src"]
-
-        description = soup.select_one(".entry-description > .card-body")
-        if description:
-            description = description.text.strip()
+        poster = _(soup.select_one("img.cover-image"))["src"]
+        description = _(soup.select_one(
+            ".entry-description > .card-body")).text.strip()
 
         episode_nodes = soup.select("li[class*=\"episode\"] > a")
 
