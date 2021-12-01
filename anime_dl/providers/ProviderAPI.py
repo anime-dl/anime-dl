@@ -67,3 +67,11 @@ class Provider:
 
     def load_links(self, url: str) -> typing.List[ExtractorLink]:
         raise NotImplementedError
+
+    def fix_url(self, uri: str):
+        if uri.startswith("//"):
+            return "https" + uri
+        elif uri.startswith("/"):
+            return self.main_url + uri
+
+        return uri

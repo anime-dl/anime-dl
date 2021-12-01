@@ -1,7 +1,10 @@
 from anime_dl.providers.all_anime_provider import AllAnimeProvider
 
+from providers.tenshi_moe_provider import TenshiMoeProvider
+
 __providers__ = [
-    AllAnimeProvider()
+    AllAnimeProvider(),
+    TenshiMoeProvider()
 ]
 
 
