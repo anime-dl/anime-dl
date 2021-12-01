@@ -103,8 +103,7 @@ class TenshiMoeProvider(Provider):
         for source in soup.select("[aria-labelledby=\"mirror-dropdown\"] > li > a.dropdown-item"):
             release = source.text.replace("/", "").strip()
 
-            source_html = self.session.get(
-                f"https://tenshi.moe/embed?v={source['href'].split('v=')[1].split('&')[0]}",
+            source_html = self.session.get(f"{self.main_url}/embed?v={source['href'].split('v=')[1].split('&')[0]}",  # noqa
                 headers={"Referer": url}
             ).text
 
